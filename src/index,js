@@ -1,12 +1,26 @@
 function handleSearchSubmit(event) {
     event.preventDefault();
     let searchInput = document.querySelector("#city-input");
-    let cityElement = document.querySelector("#city");
-    cityElement.innerHTML = searchInput.value;
+   
+    searchCity(searchInput.value);
+
+}
+function updateInfo(response) {
+    let temperatureElement = document.querySelector("#temperature");
+    let temperature = response.data.temperature.current;
+     let cityElement = document.querySelector("#city");
+    cityElement.innerHTML = response.data.city;
+    temperatureElement.innerHTML = Math.round(temperature);
+
+}
+function searchCity(city) {
+    let apiKey = "dbab59f0t267c6f00e6f3449de3dco36"
+    let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}`;
+    axios.get(apiUrl).then(updateInfo);
 
 }
 
 
 let searchFormElement = document.querySelector("#search-input");
 searchFormElement.addEventListener("submit", handleSearchSubmit);
-
+searchCity("Durban");
