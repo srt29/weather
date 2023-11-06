@@ -54,3 +54,10 @@ h1 {
 .weather-app-temperature-container {
   display: flex;
 }
+.weather-app-icon {
+  width: 88px;
+  height: 88px;
+}
+.weather-app-temperature {
+  font-size: 60px;
+}
